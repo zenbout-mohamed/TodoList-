@@ -29,11 +29,25 @@ export default function App(){
     setTodos ((prev) => prev.filter((todo) => todo.id !== id));
   };
 
+  const toggleTodo = (id) => {
+    setTodos((prev) =>
+      prev.map((todo) =>
+        todo.id === id
+        ? { ...todo, completed: !todo.completed}
+        : todo
+      );
+    );
+  }
+
   return(
     <div className ="container">
       <h1>TodoList</h1>
       <TodoForm onAdd={addTodo}/>
-      <TodoList todos={todos} onDelete={deleteTodo}/>
+      <TodoList 
+        todos={todos}
+        onDelete={deleteTodo}
+        onToggle = {toggleTodo}
+        />
     </div>
   );
 }
