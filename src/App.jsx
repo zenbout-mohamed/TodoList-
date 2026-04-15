@@ -25,8 +25,8 @@ export default function App(){
   //   setTodos((prev) => [...prev, text]);
   // };
 
-  const deleteTodo = (index) => {
-    setTodos ((prev) => prev.filter((_, i ) => i !== index));
+  const deleteTodo = (id) => {
+    setTodos ((prev) => prev.filter((todo) => todo.id !== id));
   };
 
   return(
