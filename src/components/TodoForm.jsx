@@ -7,8 +7,10 @@ export default function TodoForm({ onAdd }){
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        // console.log("Bonjour");
+        console.log('mon titre',title)
 
-        if(title.trim !== "") return;
+        if((title =="") || (author=="") || (tags=="")) return; 
         onAdd({
             title,
             author,
@@ -25,24 +27,24 @@ export default function TodoForm({ onAdd }){
     return(
         <form onSubmit={handleSubmit}>
             <input 
-                onChange={(e) => setTitle(e.target.value)}
                 value={title}
+                onChange={(e) => setTitle(e.target.value)}
                 type="text"
                 placeholder="Titre :"                 
             />
             <input 
-                onChange={(e) => setAuthor(e.target.value)}
                 value={author}
+                onChange={(e) => setAuthor(e.target.value)}
                 type="text"
                 placeholder="Auteur :"                 
             />
             <input 
-                onChange={(e) => setTags(e.target.value)}
                 value={tags}
+                onChange={(e) => setTags(e.target.value)}
                 type="text"
                 placeholder="Tags :"                 
             />
-            <button>Ajouter</button>
+            <button onClick={(e) => handleSubmit(e)}>Ajouter</button>
 
         </form>
     );

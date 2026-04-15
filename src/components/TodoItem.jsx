@@ -1,4 +1,4 @@
-export default function TodoItem( todo , onDelete, onToggle ){
+export default function TodoItem({ todo , onDelete, onToggle }){
 return (
     <li style ={{ textDecoration: todo.completed ? "line-through" : "none" }}>
         <input
@@ -10,7 +10,7 @@ return (
         <strong>{todo.title}</strong>-- {todo.author}
 
         <div>
-            {todo.tags.map((tag, index) => (
+            {todo.tags?.map((tag, index) => (
             <span key = {index}>#{tag}</span>
             ))}
         </div>

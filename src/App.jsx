@@ -8,38 +8,44 @@ export default function App(){
   const [idCounter , setIdCounter] = useState(1);
 
 
-  const addTodo = (data) => {
-    const newTodo = {
-      id: idCounter,
-      title: data.title,
-      author:data.author,
-      tags:data.tags,
-      completed:false
-    };
-    setTodos((prev) => [...prev, newTodo]);
-    setIdCounter((prev) => prev + 1);
-  }
-  // const addTodo = (text) => {
-  //   if(text.trim === "") return;
+      const addTodo = (data) => {
+        const newTodo = {
+          id: idCounter,
+          title: data.title,
+          author:data.author,
+          tags:data.tags,
+          completed:false
+        };
+        setTodos((prev) => [...prev, newTodo]);
+        setIdCounter((prev) => prev + 1);
+      };
+ 
+      const deleteTodo = (id) => {
+        setTodos ((prev) => prev.filter((todo) => todo.id !== id));
+      };
 
-  //   setTodos((prev) => [...prev, text]);
-  // };
-
-  const deleteTodo = (id) => {
-    setTodos ((prev) => prev.filter((todo) => todo.id !== id));
-  };
-
-  const toggleTodo = (id) => {
-    setTodos((prev) =>
-      prev.map((todo) =>
-        todo.id === id
-        ? { ...todo, completed: !todo.completed}
-        : todo
+      const toggleTodo = (id) => {
+      setTodos((prev) =>
+        prev.map((todo) =>
+          todo.id === id
+            ? { ...todo, completed: !todo.completed }
+            : todo
+        )
       );
-    );
-  }
+    };
+
+    const updateTitle = (id, newTitle) => {
+      setTodos((prev) =>
+        prev.map((todo) =>
+          todo.id === id
+            ? { ...todo, title: newTitle }
+            : todo
+        )
+      );
+    };
 
   return(
+    
     <div className ="container">
       <h1>TodoList</h1>
       <TodoForm onAdd={addTodo}/>
@@ -47,9 +53,11 @@ export default function App(){
         todos={todos}
         onDelete={deleteTodo}
         onToggle = {toggleTodo}
+        onUpdate = {updateTitle}
         />
     </div>
-  );
-}
+    );
+};
+
 
 
